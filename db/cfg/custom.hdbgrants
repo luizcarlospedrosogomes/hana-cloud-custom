@@ -1,0 +1,10 @@
+{
+   "hdi-custom-service": {
+     "object_owner": {
+       "container_roles":["custom#"]
+     },
+     "application_user": {
+       "container_roles":["custom"]
+     }
+   } 
+}

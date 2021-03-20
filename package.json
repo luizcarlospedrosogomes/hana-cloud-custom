@@ -1,0 +1,55 @@
+{
+    "name": "custom",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap/cds": "^4",
+        "express": "^4",
+        "@sap/hana-client": "^2.6.61"
+    },
+    "devDependencies": {
+        "sqlite3": "^5.0.2"
+    },
+    "scripts": {
+        "start": "cds run",
+        "build": "cds build"
+    },
+    "cds": {
+        "hana": {
+            "deploy-format": "hdbtable"
+        },
+        "build": {
+            "target": ".",
+            "tasks": [
+                {
+                    "src": "db",
+                    "for": "hana",
+                    "options": {
+                        "model": [
+                            "db",
+                            "srv"
+                        ]
+                    }
+                },
+                {
+                    "src": "srv",
+                    "for": "node-cf",
+                    "options": {
+                        "model": [
+                            "db",
+                            "srv"
+                        ]
+                    }
+                }
+            ]
+        },
+        "requires": {
+            "db": {
+                "kind": "sql"
+            }
+        }
+    }
+}
